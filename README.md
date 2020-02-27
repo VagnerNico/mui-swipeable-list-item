@@ -7,9 +7,8 @@ Component props:
      - actionIconLeft: This prop is required and will define the Icon showed when swipe left;
      - actionIconRight: This prop is required and will define the Icon showed when swipe right;
      - backgroundColorLeft: This prop is required and will define the color when swipe left;
-     - backgroundColorRight: This prop is required and will define the color when swipe right;
-
-  }
+     - backgroundColorRight: This prop is required and will define the color when swipe right;\
+};
   - disableDeleteAnimation: Default = false, if true will disable the dismiss animation;
   - itemIcon: This prop is optional if exists will render the ListItemIcon before the ListItemText following the [material-ui examples](https://material-ui.com/components/lists/);
   - ListItemAvatarProps: This prop is optional and will spread all props from [ListItemAvatar API](https://material-ui.com/api/list-item-avatar/);
