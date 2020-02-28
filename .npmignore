@@ -1,2 +1,6 @@
 src
 demo
+coverage
+.storybook
+__tests__
+docs
