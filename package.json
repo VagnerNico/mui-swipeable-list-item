@@ -1,6 +1,6 @@
 {
   "name": "mui-swipeable-list-item",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "This is SwipeableListItem based on Material-UI (https://github.com/mui-org/material-ui), this package adds the functionality of swipe left and right for the Material-UI ListItem Component.",
   "scripts": {
     "ts-build": "rm -rf ./dist/** && tsc",
@@ -79,10 +79,4 @@
     "@material-ui/core": "*",
     "@material-ui/icons": "*"
   },
-  "dependencies": {
-    "@material-ui/core": "^4.9.4",
-    "@material-ui/icons": "^4.9.1",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0"
-  }
 }
