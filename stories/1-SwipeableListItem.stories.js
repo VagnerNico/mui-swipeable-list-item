@@ -1,10 +1,9 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { addParameters } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import { Avatar, List, Checkbox, Typography } from '@material-ui/core';
+import { Avatar, List, Checkbox } from '@material-ui/core';
 import { Delete, Edit, ListOutlined } from '@material-ui/icons';
-import SwipeableListItem from '../src/index';
+import SwipeableListItem from '../dist';
 
 const background = {
   actionIconLeft: <Delete />,
@@ -16,25 +15,16 @@ const background = {
 export default {
   title: 'SwipeableListItem',
   component: SwipeableListItem,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+      defaultViewport: 'iphone6',
+    },
+    options: {
+      showPanel: true,
+    }
+  }
 };
-
-addParameters({
-  viewport: {
-    viewports: INITIAL_VIEWPORTS,
-    defaultViewport: 'iphone6',
-  },
-});
-
-export const Welcome = () =>
-  <>
-    <Typography align="center" variant="h5" style={{ marginBottom: 40 }}>
-      Welcome this is the SwipeableListItem
-    </Typography>
-    <Typography align="justify">
-      The SwipeableListItem it's supposed to be used on mobile environment, so use something like
-      ChromeDevTools in responsive mode to dispatch touch events instead of clicks.
-    </Typography>
-  </>
 
 export const ListOnlyWithText = () => 
   <List>
