@@ -9,7 +9,8 @@
     "watch": "tsc -- --watch",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -c .storybook -o docs && mv ./docs/index.html ./docs/index.md"
+    "build-storybook": "build-storybook -c .storybook -o docs",
+    "deploy-storybook": "npm run build-storybook && storybook-to-ghpages -- --existing-output-dir=docs"
   },
   "repository": {
     "type": "git",
@@ -51,12 +52,14 @@
     "@storybook/addons": "^5.3.14",
     "@storybook/preset-typescript": "^1.2.0",
     "@storybook/react": "^5.3.14",
+    "@storybook/storybook-deployer": "^2.8.3",
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.4.1",
     "@types/jest": "^24.9.1",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
     "babel-loader": "^8.0.6",
+    "compression-webpack-plugin": "^3.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "jest": "^24.9.0",

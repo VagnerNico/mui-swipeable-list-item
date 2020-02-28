@@ -1,10 +1,9 @@
-// module.exports = {
-//   stories: ['../stories/**/*.stories.js'],
-//   addons: ['@storybook/addon-actions', '@storybook/addon-links'],
-// };
+const CompressionPlugin = require('compression-webpack-plugin');
+
 module.exports = {
   addons: ['@storybook/addon-actions', '@storybook/addon-links', '@storybook/addon-viewport/register'],
   stories: ['../stories/**/*.stories.js'],
+  plugins: [new CompressionPlugin()],
   webpackFinal: async config => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
