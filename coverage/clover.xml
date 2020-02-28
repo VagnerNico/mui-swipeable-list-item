@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1582823827269" clover="3.2.0">
-  <project timestamp="1582823827270" name="All files">
-    <metrics statements="41" coveredstatements="38" conditionals="62" coveredconditionals="54" methods="17" coveredmethods="16" elements="120" coveredelements="108" complexity="0" loc="41" ncloc="41" packages="1" files="1" classes="1"/>
-    <file name="index.tsx" path="/home/vagner/mui-swipeable-list-item/src/index.tsx">
-      <metrics statements="41" coveredstatements="38" conditionals="62" coveredconditionals="54" methods="17" coveredmethods="16"/>
+<coverage generated="1582844473491" clover="3.2.0">
+  <project timestamp="1582844473491" name="All files">
+    <metrics statements="44" coveredstatements="41" conditionals="62" coveredconditionals="54" methods="17" coveredmethods="16" elements="123" coveredelements="111" complexity="0" loc="44" ncloc="44" packages="1" files="1" classes="1"/>
+    <file name="index.tsx" path="/home/vagner/mui2-swipeable-list-item/src/index.tsx">
+      <metrics statements="44" coveredstatements="41" conditionals="62" coveredconditionals="54" methods="17" coveredmethods="16"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
       <line num="16" count="6" type="stmt"/>
       <line num="67" count="1" type="stmt"/>
       <line num="84" count="20" type="stmt"/>
@@ -45,6 +47,7 @@
       <line num="195" count="14" type="stmt"/>
       <line num="197" count="6" type="stmt"/>
       <line num="200" count="20" type="stmt"/>
+      <line num="262" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>

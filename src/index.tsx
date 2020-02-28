@@ -189,12 +189,12 @@ const SwipeableListItem: SFC<SwipeableListItemProps> = ({
 
   const { actionIconLeft, actionIconRight, backgroundColorLeft, backgroundColorRight } = background;
 
-  const getOpacity = (): string | undefined => {
+  const getOpacity = (): number => {
     const opacity = parseFloat((Math.abs(diff) / 100).toFixed(2));
     if (opacity < 1) {
-      return opacity.toString();
+      return opacity;
     }
-    return `1`;
+    return 1;
   };
 
   return (
@@ -227,6 +227,7 @@ const SwipeableListItem: SFC<SwipeableListItemProps> = ({
           onTouchStart={onDragStartTouch}
           onTouchMove={onTouchMove}
           onTouchEnd={onDragEndTouch}
+           // @ts-ignore
           ref={listElementEl}
           style={{
             transform: `translateX(${diff}px)`,

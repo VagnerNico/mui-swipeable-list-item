@@ -1,30 +1,30 @@
 {
   "name": "mui-swipeable-list-item",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "This is SwipeableListItem based on Material-UI (https://github.com/mui-org/material-ui), this package adds the functionality of swipe left and right for the Material-UI ListItem Component.",
-  "private": false,
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ]
-  },
-  "peerDependencies": {
-    "@material-ui/core": "^4.x",
-    "@material-ui/icons": "^4.x",
-    "react": "^16.x",
-    "react-dom": "^16.x"
-  },
   "scripts": {
-    "publish:npm": "rm -rf dist && mkdir dist && babel src/index.tsx -d dist --copy-files"
+    "ts-build": "rm -rf ./dist/** && tsc",
+    "babel-build": "rm -rf ./dist/** && babel ./src --out-dir dist --extensions '.ts,.tsx'",
+    "semantic-release": "semantic-release",
+    "watch": "tsc -- --watch",
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook -c .storybook -o .out"
   },
-  "files": [
-    "dist",
-    "README.md"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VagnerNico/mui-swipeable-list-item.git"
   },
+  "bugs": {
+    "url": "https://github.com/VagnerNico/mui-swipeable-list-item/issues"
+  },
+  "homepage": "https://github.com/VagnerNico/mui-swipeable-list-item#readme",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "keywords": [
     "material",
     "design",
@@ -36,50 +36,50 @@
   ],
   "author": "Vagner José Nicolodi",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/VagnerNico/mui-swipeable-list-item/issues"
-  },
-  "homepage": "https://github.com/VagnerNico/mui-swipeable-list-item#readme",
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/preset-react": "^7.8.3",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "@typescript-eslint/eslint-plugin": "^2.21.0",
-    "@typescript-eslint/parser": "^2.21.0",
+    "@babel/core": "^7.8.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/plugin-transform-typescript": "^7.8.3",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/preset-typescript": "^7.8.3",
+    "@storybook/addon-actions": "^5.3.14",
+    "@storybook/addon-info": "^5.3.14",
+    "@storybook/addon-links": "^5.3.14",
+    "@storybook/addon-viewport": "^5.3.14",
+    "@storybook/addons": "^5.3.14",
+    "@storybook/preset-typescript": "^1.2.0",
+    "@storybook/react": "^5.3.14",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.4.1",
+    "@types/jest": "^24.9.1",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "babel-loader": "^8.0.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-import-resolver-typescript": "^2.0.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.18.3",
-    "prettier": "^1.19.1",
-    "react-scripts": "3.4.0",
-    "react-test-renderer": "^16.12.0",
-    "typescript": "~3.7.2"
+    "jest": "^24.9.0",
+    "react-docgen-typescript-loader": "^3.6.0",
+    "react-test-renderer": "^16.13.0",
+    "semantic-release": "^17.0.4",
+    "ts-jest": "^24.3.0",
+    "ts-loader": "^6.2.1",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.8.2"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "@material-ui/core": "*",
+    "@material-ui/icons": "*"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.4",
+    "@material-ui/icons": "^4.9.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   }
 }

@@ -2,8 +2,9 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { Avatar, Checkbox } from '@material-ui/core';
 import { Delete, Edit, List } from '@material-ui/icons';
-import SwipeableListItem from './index';
+import SwipeableListItem from '../src';
 
+// @ts-ignore
 window.innerWidth = 400;
 
 const background = {
