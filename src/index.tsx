@@ -1,4 +1,4 @@
-import React, { ReactElement, SFC, useRef, useState } from 'react';
+import React, { FC, ReactElement, useRef, useState } from 'react';
 import {
   ListItem,
   ListItemProps as ListItemPropsTypes,
@@ -39,6 +39,10 @@ const useStyles = makeStyles(() => ({
     overflow: `hidden`,
     width: `100%`,
   },
+  classeZoeira: {
+    border: "1px solid",
+    borderColor: `red`,
+  },
 }));
 
 interface SwipeableListItemProps {
@@ -64,7 +68,7 @@ interface SwipeableListItemProps {
   threshold?: number;
 }
 
-const SwipeableListItem: SFC<SwipeableListItemProps> = ({
+const SwipeableListItem: FC<SwipeableListItemProps> = ({
   avatar,
   background,
   disableDeleteAnimation = false,
@@ -83,7 +87,7 @@ const SwipeableListItem: SFC<SwipeableListItemProps> = ({
 }) => {
   const classes = useStyles();
   const { backgroundClass, listItemClass, wrapperClass } = classes;
-  const listElementEl = useRef<HTMLLIElement>(null);
+  const listElementEl = useRef<HTMLLIElement>(document.createElement(`li`));
   const [state, setState] = useState({
     wrapperMaxHeight: 1000,
     diff: 0,
@@ -93,6 +97,8 @@ const SwipeableListItem: SFC<SwipeableListItemProps> = ({
     side: `left`,
     startTime: 0,
   });
+
+  const { className, ...restOfListItemProps } = ListItemProps;
 
   const { diff, dragged, dragStartX, isAnimating, side, wrapperMaxHeight } = state;
 
@@ -114,16 +120,16 @@ const SwipeableListItem: SFC<SwipeableListItemProps> = ({
         ...prevState,
         dragged: false,
       }));
-      if (listElementEl.current && diff < listElementEl.current.offsetWidth * threshold * -1) {
+      if (diff < listElementEl.current.offsetWidth * threshold * -1) {
         setState(prevState => ({
           ...prevState,
-          diff: listElementEl.current ? -listElementEl.current.offsetWidth * 2 : 0,
+          diff: -listElementEl.current.offsetWidth * 2,
           wrapperMaxHeight: 0,
         }));
-      } else if (listElementEl.current && diff > listElementEl.current.offsetWidth * threshold) {
+      } else if (diff > listElementEl.current.offsetWidth * threshold) {
         setState(prevState => ({
           ...prevState,
-          diff: listElementEl.current ? listElementEl.current.offsetWidth * 2 : 0,
+          diff: listElementEl.current.offsetWidth * 2,
         }));
       } else {
         setState(prevState => ({ ...prevState, diff: 0 }));
@@ -220,10 +226,10 @@ const SwipeableListItem: SFC<SwipeableListItemProps> = ({
           {side === `left` ? actionIconLeft : actionIconRight}
         </ListItem>
         <ListItem
-          className={listItemClass}
+          {...restOfListItemProps}
+          className={[listItemClass, className].join(` `)}
           data-testid="draggable-list-item"
           divider={dragged}
-          {...ListItemProps}
           onTouchStart={onDragStartTouch}
           onTouchMove={onTouchMove}
           onTouchEnd={onDragEndTouch}

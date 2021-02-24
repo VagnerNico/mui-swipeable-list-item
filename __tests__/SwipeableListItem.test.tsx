@@ -30,7 +30,7 @@ test(`Render one ListItem`, () => {
 const { getComputedStyle } = window;
 const values = `_values`;
 
-test(`Render one ListItem and trigger the left action with delete behaviour`, async () => {
+test(`Render one ListItem and trigger the left action with delete behavior`, async () => {
   const { getByTestId } = render(
     <SwipeableListItem
       background={background}
@@ -52,13 +52,14 @@ test(`Render one ListItem and trigger the left action with delete behaviour`, as
   expect(getComputedStyle(actionElement)[values].opacity).toEqual(`0`);
   expect(getComputedStyle(wrapperElement)[values][`max-height`]).toEqual(`1000px`);
   fireEvent.touchStart(listElement, { touches: [{ clientX: 0 }] });
-  fireEvent.touchMove(listElement, { touches: [{ clientX: -200 }] });
+  fireEvent.touchMove(listElement, { touches: [{ clientX: -300 }] });
   expect(getComputedStyle(actionElement)[values].opacity).toEqual(`1`);
   fireEvent.touchEnd(listElement);
+  fireEvent.transitionEnd(wrapperElement);
   expect(getComputedStyle(wrapperElement)[values][`max-height`]).toEqual(`0`);
 });
 
-test(`Render one ListItem and trigger the left action without delete behaviour`, () => {
+test(`Render one ListItem and trigger the left action without delete behavior`, () => {
   const { getByTestId } = render(
     <SwipeableListItem
       background={background}
@@ -81,9 +82,10 @@ test(`Render one ListItem and trigger the left action without delete behaviour`,
   expect(getComputedStyle(actionElement)[values].opacity).toEqual(`0`);
   expect(getComputedStyle(wrapperElement)[values][`max-height`]).toEqual(undefined);
   fireEvent.touchStart(listElement, { touches: [{ clientX: 0 }] });
-  fireEvent.touchMove(listElement, { touches: [{ clientX: -200 }] });
+  fireEvent.touchMove(listElement, { touches: [{ clientX: -300 }] });
   expect(getComputedStyle(actionElement)[values].opacity).toEqual(`1`);
   fireEvent.touchEnd(listElement);
+  fireEvent.transitionEnd(wrapperElement);
   expect(getComputedStyle(wrapperElement)[values][`max-height`]).toEqual(undefined);
 });
 
