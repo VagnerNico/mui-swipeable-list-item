@@ -13,20 +13,20 @@ const background = {
 };
 
 export default {
-  title: 'SwipeableListItem',
+  title: `SwipeableListItem`,
   component: SwipeableListItem,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
-      defaultViewport: 'iphone6',
+      defaultViewport: `iphone6`,
     },
     options: {
       showPanel: true,
-    }
-  }
+    },
+  },
 };
 
-export const ListOnlyWithText = () => 
+export const ListOnlyWithText = () => (
   <List>
     <SwipeableListItem
       background={background}
@@ -50,11 +50,16 @@ export const ListOnlyWithText = () =>
       secondaryText="Secondary text"
     />
   </List>
+);
 
-export const ListWithAvatar = () => 
+export const ListWithAvatar = () => (
   <List>
     <SwipeableListItem
-      avatar={<Avatar><ListOutlined /></Avatar>}
+      avatar={
+        <Avatar>
+          <ListOutlined />
+        </Avatar>
+      }
       background={background}
       onSwipedLeft={action(`Deleting`)}
       onSwipedRight={action(`Editting`)}
@@ -62,7 +67,11 @@ export const ListWithAvatar = () =>
       secondaryText="Secondary text"
     />
     <SwipeableListItem
-      avatar={<Avatar><ListOutlined /></Avatar>}
+      avatar={
+        <Avatar>
+          <ListOutlined />
+        </Avatar>
+      }
       background={background}
       onSwipedLeft={action(`Deleting`)}
       onSwipedRight={action(`Editting`)}
@@ -70,7 +79,11 @@ export const ListWithAvatar = () =>
       secondaryText="Secondary text"
     />
     <SwipeableListItem
-      avatar={<Avatar><ListOutlined /></Avatar>}
+      avatar={
+        <Avatar>
+          <ListOutlined />
+        </Avatar>
+      }
       background={background}
       onSwipedLeft={action(`Deleting`)}
       onSwipedRight={action(`Editting`)}
@@ -78,8 +91,9 @@ export const ListWithAvatar = () =>
       secondaryText="Secondary text"
     />
   </List>
+);
 
-export const ListWithListIconAndSecondaryAction = () => 
+export const ListWithListIconAndSecondaryAction = () => (
   <List>
     <SwipeableListItem
       background={background}
@@ -109,3 +123,39 @@ export const ListWithListIconAndSecondaryAction = () =>
       secondaryText="Secondary text"
     />
   </List>
+);
+
+export const ListWithDisabledDeleteAnimation = () => (
+  <List>
+    <SwipeableListItem
+      background={background}
+      disableDeleteAnimation
+      itemIcon={<ListOutlined />}
+      onSwipedLeft={action(`Deleting`)}
+      onSwipedRight={action(`Editting`)}
+      primaryText="Item List 0"
+      secondaryAction={<Checkbox />}
+      secondaryText="Secondary text"
+    />
+    <SwipeableListItem
+      background={background}
+      disableDeleteAnimation
+      itemIcon={<ListOutlined />}
+      onSwipedLeft={action(`Deleting`)}
+      onSwipedRight={action(`Editting`)}
+      primaryText="Item List 1"
+      secondaryAction={<Checkbox />}
+      secondaryText="Secondary text"
+    />
+    <SwipeableListItem
+      background={background}
+      disableDeleteAnimation
+      itemIcon={<ListOutlined />}
+      onSwipedLeft={action(`Deleting`)}
+      onSwipedRight={action(`Editting`)}
+      primaryText="Item List 2"
+      secondaryAction={<Checkbox />}
+      secondaryText="Secondary text"
+    />
+  </List>
+);

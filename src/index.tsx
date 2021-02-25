@@ -40,7 +40,7 @@ const useStyles = makeStyles(() => ({
     width: `100%`,
   },
   classeZoeira: {
-    border: "1px solid",
+    border: `1px solid`,
     borderColor: `red`,
   },
 }));
@@ -105,7 +105,7 @@ const SwipeableListItem: FC<SwipeableListItemProps> = ({
   function onDragStartTouch(event: React.TouchEvent): void {
     const touch = event.touches[0];
     const { clientX } = touch;
-    setState(prevState => ({
+    setState((prevState) => ({
       ...prevState,
       dragged: true,
       dragStartX: clientX,
@@ -116,23 +116,23 @@ const SwipeableListItem: FC<SwipeableListItemProps> = ({
 
   function onDragEndTouch(): void {
     if (dragged) {
-      setState(prevState => ({
+      setState((prevState) => ({
         ...prevState,
         dragged: false,
       }));
       if (diff < listElementEl.current.offsetWidth * threshold * -1) {
-        setState(prevState => ({
+        setState((prevState) => ({
           ...prevState,
           diff: -listElementEl.current.offsetWidth * 2,
           wrapperMaxHeight: 0,
         }));
       } else if (diff > listElementEl.current.offsetWidth * threshold) {
-        setState(prevState => ({
+        setState((prevState) => ({
           ...prevState,
           diff: listElementEl.current.offsetWidth * 2,
         }));
       } else {
-        setState(prevState => ({ ...prevState, diff: 0 }));
+        setState((prevState) => ({ ...prevState, diff: 0 }));
       }
     }
   }
@@ -141,13 +141,13 @@ const SwipeableListItem: FC<SwipeableListItemProps> = ({
     const touch = event.touches[0];
     const newDiff = touch.clientX - dragStartX;
     if (newDiff < 0) {
-      setState(prevState => ({
+      setState((prevState) => ({
         ...prevState,
         diff: newDiff,
         side: `left`,
       }));
     } else if (newDiff > 0) {
-      setState(prevState => ({
+      setState((prevState) => ({
         ...prevState,
         diff: newDiff,
         side: `right`,
@@ -159,34 +159,23 @@ const SwipeableListItem: FC<SwipeableListItemProps> = ({
     event.persist();
     const { propertyName } = event;
     const propertyCheck = disableDeleteAnimation || propertyName === `max-height`;
-    if (
-      side === `left` &&
-      propertyCheck &&
-      !dragged &&
-      listElementEl.current &&
-      diff < listElementEl.current.offsetWidth * threshold * -1
-    ) {
+    if (side === `left` && propertyCheck && !dragged && diff < listElementEl.current.offsetWidth * threshold * -1) {
       onSwipedLeft(event);
       if (disableDeleteAnimation)
-        setState(prevState => ({
+        setState((prevState) => ({
           ...prevState,
           diff: 0,
           isAnimating: false,
         }));
-    } else if (
-      side === `right` &&
-      !dragged &&
-      listElementEl.current &&
-      diff > listElementEl.current.offsetWidth * threshold
-    ) {
+    } else if (side === `right` && !dragged && diff > listElementEl.current.offsetWidth * threshold) {
       onSwipedRight(event);
-      setState(prevState => ({
+      setState((prevState) => ({
         ...prevState,
         diff: 0,
         isAnimating: false,
       }));
     } else {
-      setState(prevState => ({
+      setState((prevState) => ({
         ...prevState,
         isAnimating: false,
       }));
@@ -226,35 +215,48 @@ const SwipeableListItem: FC<SwipeableListItemProps> = ({
           {side === `left` ? actionIconLeft : actionIconRight}
         </ListItem>
         <ListItem
-          {...restOfListItemProps}
+          {...restOfListItemProps} // eslint-disable-line react/jsx-props-no-spreading
           className={[listItemClass, className].join(` `)}
           data-testid="draggable-list-item"
           divider={dragged}
           onTouchStart={onDragStartTouch}
           onTouchMove={onTouchMove}
           onTouchEnd={onDragEndTouch}
-           // @ts-ignore
+          // @ts-ignore
           ref={listElementEl}
           style={{
             transform: `translateX(${diff}px)`,
           }}
         >
           {itemIcon && (
-            <ListItemIcon data-testid="list-item-icon" {...ListItemIconProps}>
+            <ListItemIcon
+              data-testid="list-item-icon"
+              {...ListItemIconProps} // eslint-disable-line react/jsx-props-no-spreading
+            >
               {itemIcon}
             </ListItemIcon>
           )}
           {avatar && (
-            <ListItemAvatar data-testid="list-item-avatar" {...ListItemAvatarProps}>
+            <ListItemAvatar
+              data-testid="list-item-avatar"
+              {...ListItemAvatarProps} // eslint-disable-line react/jsx-props-no-spreading
+            >
               {avatar}
             </ListItemAvatar>
           )}
-          <ListItemText {...ListItemTextProps} primary={primaryText} secondary={secondaryText} />
+          <ListItemText
+            {...ListItemTextProps} // eslint-disable-line react/jsx-props-no-spreading
+            primary={primaryText}
+            secondary={secondaryText}
+          />
           {secondaryAction && (
             <ListItemSecondaryAction
               data-testid="list-secondary-action"
-              {...ListItemSecondaryActionProps}
-              style={{ display: dragged || isAnimating ? `none` : `block` }}
+              {...ListItemSecondaryActionProps} // eslint-disable-line react/jsx-props-no-spreading
+              style={{
+                transition: dragged || isAnimating ? undefined : `visibility 0.3s ease-out 0.3s`,
+                visibility: dragged || isAnimating ? `hidden` : `visible`,
+              }}
             >
               {secondaryAction}
             </ListItemSecondaryAction>

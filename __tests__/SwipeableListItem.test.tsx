@@ -55,7 +55,9 @@ test(`Render one ListItem and trigger the left action with delete behavior`, asy
   fireEvent.touchMove(listElement, { touches: [{ clientX: -300 }] });
   expect(getComputedStyle(actionElement)[values].opacity).toEqual(`1`);
   fireEvent.touchEnd(listElement);
-  fireEvent.transitionEnd(wrapperElement);
+  const transitionEndEvent = new Event(`transitionend`, { bubbles: true, cancelable: false });
+  (transitionEndEvent as any).propertyName = `max-height`;
+  fireEvent(wrapperElement, transitionEndEvent);
   expect(getComputedStyle(wrapperElement)[values][`max-height`]).toEqual(`0`);
 });
 
@@ -85,7 +87,7 @@ test(`Render one ListItem and trigger the left action without delete behavior`, 
   fireEvent.touchMove(listElement, { touches: [{ clientX: -300 }] });
   expect(getComputedStyle(actionElement)[values].opacity).toEqual(`1`);
   fireEvent.touchEnd(listElement);
-  fireEvent.transitionEnd(wrapperElement);
+  fireEvent.transitionEnd(listElement);
   expect(getComputedStyle(wrapperElement)[values][`max-height`]).toEqual(undefined);
 });
 
@@ -176,4 +178,30 @@ test(`Render a ListItem with avatar and secondaryAction`, () => {
   expect(listAvatarElement).toBeInTheDocument();
   expect(listSecondaryActionElement).toBeInTheDocument();
   expect(listIconElement).toBeInTheDocument();
+});
+
+test(`Trigger touch end without moving`, () => {
+  const { getByTestId } = render(
+    <SwipeableListItem
+      background={background}
+      disableDeleteAnimation
+      itemIcon={<List />}
+      onSwipedLeft={() => console.log(`Deleted`)}
+      onSwipedRight={() => console.log(`Editting`)}
+      primaryText="Item List 0"
+      secondaryAction={<Checkbox checked />}
+    />,
+  );
+  Object.defineProperties(window.HTMLElement.prototype, {
+    offsetWidth: {
+      get() {
+        return 400;
+      },
+    },
+  });
+  const listElement = getByTestId(`draggable-list-item`);
+  const actionElement = getByTestId(`action-list-item`);
+  fireEvent.touchMove(listElement, { touches: [{ clientX: 0 }] });
+  fireEvent.touchEnd(listElement);
+  expect(getComputedStyle(actionElement)[values].opacity).toEqual(`0`);
 });
